@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -73,14 +72,28 @@ fun WearApp() {
 
         /* *************************** Part 4: Wear OS Scaffold *************************** */
         // TODO (Start): Create a Scaffold (Wear Version)
-
+        Scaffold(
+            timeText = {
+                if (!listState.isScrollInProgress) {
+                    TimeText()
+                }
+            },
+            vignette = {
+                Vignette(vignettePosition = VignettePosition.TopAndBottom)
+            },
+            positionIndicator = {
+                PositionIndicator(
+                    scalingLazyListState = listState
+                )
+            }
+        ) {
             // Modifiers used by our Wear composables.
             val contentModifier = Modifier.fillMaxWidth().padding(bottom = 8.dp)
             val iconModifier = Modifier.size(24.dp).wrapContentSize(align = Alignment.Center)
 
             /* *************************** Part 3: ScalingLazyColumn *************************** */
             // TODO: Swap a ScalingLazyColumn (Wear's version of LazyColumn)
-        ScalingLazyColumn(
+            ScalingLazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 autoCentering = AutoCenteringParams(itemIndex = 0),
                 state = listState,
@@ -102,9 +115,8 @@ fun WearApp() {
                 item { ChipExample(contentModifier, iconModifier) }
                 item { ToggleChipExample(contentModifier) }
             }
-
         // TODO (End): Create a Scaffold (Wear Version)
-
+        }
     }
 }
 
