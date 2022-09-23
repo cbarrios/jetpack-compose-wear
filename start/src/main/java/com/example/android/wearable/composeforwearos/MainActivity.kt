@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
 fun WearApp() {
     WearAppTheme {
         // TODO: Swap to ScalingLazyListState
-        val listState = rememberLazyListState()
+        val listState = rememberScalingLazyListState()
 
         /* *************************** Part 4: Wear OS Scaffold *************************** */
         // TODO (Start): Create a Scaffold (Wear Version)
@@ -80,8 +80,10 @@ fun WearApp() {
 
             /* *************************** Part 3: ScalingLazyColumn *************************** */
             // TODO: Swap a ScalingLazyColumn (Wear's version of LazyColumn)
-            LazyColumn(
+        ScalingLazyColumn(
                 modifier = Modifier.fillMaxSize(),
+                autoCentering = AutoCenteringParams(itemIndex = 0),
+                state = listState,
                 contentPadding = PaddingValues(
                     top = 32.dp,
                     start = 8.dp,
@@ -89,7 +91,6 @@ fun WearApp() {
                     bottom = 32.dp
                 ),
                 verticalArrangement = Arrangement.Center,
-                state = listState
             ) {
 
                 /* ******************* Part 1: Simple composables ******************* */
