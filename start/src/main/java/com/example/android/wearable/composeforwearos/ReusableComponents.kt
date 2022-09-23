@@ -58,13 +58,33 @@ fun ButtonExample(
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier
 ) {
-
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.Center
+    ) {
+        // Button
+        Button(
+            modifier = Modifier.size(ButtonDefaults.LargeButtonSize),
+            onClick = { /* ... */ },
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Phone,
+                contentDescription = "triggers phone action",
+                modifier = iconModifier
+            )
+        }
+    }
 }
 
 // TODO: Create a Text Composable
 @Composable
 fun TextExample(modifier: Modifier = Modifier) {
-
+    Text(
+        modifier = modifier,
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.colors.primary,
+        text = stringResource(R.string.device_shape)
+    )
 }
 
 // TODO: Create a Card (specifically, an AppCard) Composable
@@ -73,7 +93,22 @@ fun CardExample(
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier
 ) {
-
+    AppCard(
+        modifier = modifier,
+        appImage = {
+            Icon(
+                imageVector = Icons.Rounded.Message,
+                contentDescription = "triggers open message action",
+                modifier = iconModifier
+            )
+        },
+        appName = { Text("Messages") },
+        time = { Text("12m") },
+        title = { Text("Kim Green") },
+        onClick = { /* ... */ }
+    ) {
+        Text("On my way!")
+    }
 }
 
 // TODO: Create a Chip Composable

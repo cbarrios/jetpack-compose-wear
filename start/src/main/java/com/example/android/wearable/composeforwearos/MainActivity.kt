@@ -92,9 +92,6 @@ fun WearApp() {
                 state = listState
             ) {
 
-                // TODO: Remove item; for beginning only.
-                item { StartOnlyTextComposables() }
-
                 /* ******************* Part 1: Simple composables ******************* */
                 item { ButtonExample(contentModifier, iconModifier) }
                 item { TextExample(contentModifier) }
